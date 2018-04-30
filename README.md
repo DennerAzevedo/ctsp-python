@@ -22,4 +22,4 @@ Inside the directory you're right now you should find a manage.py script. Now ru
 python3 manage.py runserver
 ```
 
-Now you have a local server running on port 8000, you can then run CTSP locally writing on (http://localhost:8000)
+Now you have a local server running on port 8000, you can then run CTSP locally writing on (http://localhost:8000/ctsp)
