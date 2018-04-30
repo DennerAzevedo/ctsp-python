@@ -28,9 +28,7 @@ Now you have a local server running on port 8000, you can then run CTSP locally 
 ### Having the functionalities
 CTSP utilizes a MySQL. So, for development and testing purposes, you are going to need a MySQL client and server up and running on your system.
 Follow this tutorial by Jeremy Morris on how to set up your Django install to utilize MySQL databases instead of SQLite:
-```
-*[Installing MySQL to Django](https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database) - During the tutorial, change *python* for *python3*, and the database name to *ctsp*.
-```
 
+*[Installing MySQL to Django](https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database) - During the tutorial, change *python* for *python3*, and the database name to *ctsp*.
 
 ## Prerequisites
