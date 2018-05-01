@@ -30,5 +30,3 @@ CTSP utilizes a MySQL. So, for development and testing purposes, you are going t
 Follow this tutorial by Jeremy Morris on how to set up your Django install to utilize MySQL databases instead of SQLite:
 
 * [Installing MySQL to Django](https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database) - During the tutorial, change *python* for *python3*, and the database name to *ctsp*.
-
-## Prerequisites
