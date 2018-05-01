@@ -14,7 +14,7 @@ git clone https://github.com/CTSP-Software/ctsp-python
 Then you should run the commands:
 
 ```
-cd ctsp-python/project
+cd ctsp-python/project/
 ```
 
 Inside the directory you're right now you should find a manage.py script. Now run this script with python3 and pass the runserver argument.:
