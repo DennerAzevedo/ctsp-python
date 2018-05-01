@@ -5,7 +5,7 @@ CTSP is a open source software to help you manage your team software development
 ## Getting Started
 ### Putting the server up
 
-First of all, clone the github project into a local machine running:
+First of all, clone the GitHub project into a local machine running:
 
 ```
 git clone https://github.com/CTSP-Software/ctsp-python
