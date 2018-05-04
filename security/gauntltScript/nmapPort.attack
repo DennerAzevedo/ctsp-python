@@ -1,0 +1,23 @@
+@slow
+Feature: simple nmap attack (sanity check)
+
+  Background:
+    Given "nmap" is installed
+    And the following profile:
+      | name     | value      |
+      | hostnameExternal| 200.131.224.104 |
+      | hostnameInternal|  172.16.200.41 |
+
+  Scenario: Verify server External is available on port 2250
+    When I launch an "nmap" attack with:
+      """
+      nmap -p 2250 <hostnameExternal> -Pn
+      """
+    Then the output should match /2250.tcp\s+filtered/
+
+   Scenario:  Verify server Internal is available on port 2250
+    When I launch an "nmap" attack with:
+      """
+      nmap -p 2250 <hostnameInternal> -Pn
+      """
+    Then the output should match /2250.tcp\s+filtered/
