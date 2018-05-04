@@ -1,19 +1,6 @@
 {% extends 'ctsp/base.html' %}
 {% load staticfiles %}
 
-
-{% block head_block %}
-<link rel="stylesheet" href="{% static 'ctsp/css/bootstrap.css' %}">
-<link rel="stylesheet" href="{% static 'ctsp/css/style.css' %}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="{% static 'ctsp/js/bootstrap.js' %}"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{% endblock %}
-
 {% block body_block %}
 <!--Botoes no centro da tela-->
 <div class="container size">
@@ -71,7 +58,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Form code begins -->
-            <form action="{% url 'ctsp:' %}" id="open_form" method="post">
+            <form action="{% url 'ctsp:project_welcome' %}" id="open_form" method="post">
                 <div class="modal-body">
                     {% csrf_token %}
                     <div class="form-group">

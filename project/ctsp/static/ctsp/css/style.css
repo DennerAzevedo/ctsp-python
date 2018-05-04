@@ -1,10 +1,10 @@
 .size {
-    height: 95vh;
+    height: 100vh;
 }
 
 .vertical-align {
     position: relative;
-    top: 45vh;
+    top: 50vh;
     transform: translateY(-50%);
 }
 
