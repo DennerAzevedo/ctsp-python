@@ -1,13 +1,17 @@
 .size {
-    height: 100vh;
+    height: 95vh;
 }
 
 .vertical-align {
     position: relative;
-    top: 50vh;
+    top: 45vh;
     transform: translateY(-50%);
 }
 
 .cor-texto{
     color: #005cbf;
+}
+
+.navbar-toggler {
+    border: none;
 }
