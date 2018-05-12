@@ -11,3 +11,7 @@
 .cor-texto{
     color: #005cbf;
 }
+
+.navbar-toggler {
+    border: none;
+}

@@ -1,19 +1,6 @@
 {% extends 'ctsp/base.html' %}
 {% load staticfiles %}
 
-
-{% block head_block %}
-<link rel="stylesheet" href="{% static 'ctsp/css/bootstrap.css' %}">
-<link rel="stylesheet" href="{% static 'ctsp/css/style.css' %}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="{% static 'ctsp/js/bootstrap.js' %}"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{% endblock %}
-
 {% block body_block %}
 <!--Botoes no centro da tela-->
 <div class="container size">
@@ -22,7 +9,8 @@
             Create Project
         </button>
         <div class="col-2"></div>
-        <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#modalOpenProject">Open Project
+        <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#modalOpenProject">
+            Open Project
         </button>
     </div>
 </div>
@@ -35,29 +23,28 @@
                 <h4 class="modal-title">Create Project</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
-                <!-- Form code begins -->
-                <form action="{% url 'ctsp:project_welcome' %}" id="create_form" method="post">
+            <!-- Form code begins -->
+            <form action="{% url 'ctsp:project_welcome' %}" id="create_form" method="post">
+                <div class="modal-body">
                     {% csrf_token %}
                     <div class="form-group ">
                         <label class="control-label " for="name">Name of project</label>
                         <input class="form-control" id="name" name="name" type="text"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="date_begin">Date</label>
+                        <label class="control-label" for="date_begin_create">Date</label>
                         <div class="form-inline"> <!-- Date input -->
-                            <input class="form-control" id="date_begin" name="date" placeholder="DD/MM/YYY"
-                                   type="text"/>
-                            <label class="control-label m-3" for="date_end">to</label>
-                            <input class="form-control" id="date_end" name="date" placeholder="DD/MM/YYY" type="text"/>
+                            <input class="form-control" id="date_begin_create" name="date" placeholder="DD/MM/YYY" type="text"/>
+                            <label class="control-label m-3" for="date_end_create">to</label>
+                            <input class="form-control" id="date_end_create" name="date" placeholder="DD/MM/YYY" type="text"/>
                         </div>
                     </div>
-                </form>
-                <!-- Form code ends -->
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-dismiss="modal" name="submit" form="create_form">Create</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" name="submit" form="create_form">Create</button>
+                </div>
+            </form>
+            <!-- Form code ends -->
         </div>
     </div>
 </div>
@@ -70,28 +57,36 @@
                 <h4 class="modal-title">Open Project</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
-                Choose: <input class="form-control is-invalid" id="validationServer03" placeholder="Name" required
-                               type="text" list="languages">
-                <label for="languages">
-                    <datalist id="languages">
-                        <select>
-                            <option value="JavaScript">JavaScript</option>
-                            <option value="Haskell">Haskell</option>
-                            <option value="Ruby">Ruby</option>
-                            <option value="Go">Go</option>
-                            <option value="Python">Python</option>
-                            <option value="etc">etc</option>
-                        </select>
-                    </datalist>
-                </label>
-                <div class="invalid-feedback">
-                    Project name not found.
+            <!-- Form code begins -->
+            <form action="{% url 'ctsp:project_welcome' %}" id="open_form" method="post">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Project Name</label>
+                        <input class="form-control" placeholder="Name" required type="text" list="projects">
+                        <label for="projects">
+                            <datalist id="projects">
+                                <select>
+                                    <option value="Projeto1">Projeto1</option>
+                                    <option value="Projeto2">Projeto2</option>
+                                    <option value="Projeto3">Projeto3</option>
+                                </select>
+                            </datalist>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="date_begin_open">Date</label>
+                        <div class="form-inline"> <!-- Date input -->
+                            <input class="form-control" id="date_begin_open" name="date" placeholder="DD/MM/YYY" type="text"/>
+                            <label class="control-label m-3" for="date_end_open">to</label>
+                            <input class="form-control" id="date_end_open" name="date" placeholder="DD/MM/YYY" type="text"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Open</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Open</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
