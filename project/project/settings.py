@@ -24,7 +24,7 @@ SECRET_KEY = 'rs@uktq213(v_7!i)3cz@qx^3*x6n4l8h7*aj!#2zrye542xop'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ctsp',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'ctsp-01777277',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -117,3 +117,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
