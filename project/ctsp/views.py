@@ -15,7 +15,7 @@ def create_project(request):
 	if request.method == 'POST':
 		form = ProjectForm(request.POST)
 		if form.is_valid():
-		return HttpResponseRedirect('/thanks/')
+			return HttpResponseRedirect('/thanks/')
 	else:
 		form = ProjectForm()
 	return render(request, 'ctsp/create_project.html', {'form': form})
