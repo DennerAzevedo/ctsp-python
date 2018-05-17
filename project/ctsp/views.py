@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import ProjectForm
+from .models import Projeto
 
 # Create your views here.
 def index(request):
