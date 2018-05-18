@@ -1,22 +1,27 @@
 from django.shortcuts import render
-from .forms import ProjectForm
+from .forms import ProjetoForm
 from .models import Projeto
 
 # Create your views here.
+
+
 def index(request):
-	return render(request, 'ctsp/index.html')
+    form = ProjetoForm()
+
+    if request.method == 'POST':
+        form = ProjetoForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+
+    context_dict = {"form": form}
+    return render(request, 'ctsp/index.html', context_dict)
+
 
 def about(request):
-	return render(request, 'ctsp/about.html')
+    return render(request, 'ctsp/about.html')
+
 
 def project_welcome(request):
-	return render(request, 'ctsp/about.html')
-
-def create_project(request):
-	if request.method == 'POST':
-		form = ProjectForm(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/thanks/')
-	else:
-		form = ProjectForm()
-	return render(request, 'ctsp/create_project.html', {'form': form})
+    return render(request, 'ctsp/about.html')

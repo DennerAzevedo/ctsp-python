@@ -21,6 +21,7 @@
     </title>
 </head>
 
+{% block body_block %}
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" href="{% url 'ctsp:index' %}">
@@ -51,12 +52,13 @@
     </div>
 </nav>
 <!-- page specific content -->
-{% block body_block %}
 {% endblock %}
+
+{% block footer_block %}
 <footer class="card-footer text-center bg-primary fixed-bottom">
     <a class="text-light" href="{% url 'ctsp:about' %}">About</a>
     <a class="text-light" href="{% url 'ctsp:index' %}">Home</a>
 </footer>
-
+{% endblock %}
 </body>
 </html>
