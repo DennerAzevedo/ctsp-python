@@ -2,6 +2,24 @@
 <html lang="en">
 
 <head>
+    <style>
+        .query-table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .td,
+        .th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
     <link rel="stylesheet" href="{% static 'ctsp/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'ctsp/css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -53,5 +71,10 @@
     <a class="text-light" href="{% url 'ctsp:index' %}">Home</a>
     {% block footer_block %} {% endblock %}
 </footer>
+
+<script>
+    {% block script_block %}
+    {% endblock %}
+</script>
 
 </html>
