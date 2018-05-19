@@ -67,6 +67,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  padding-left: 60px;
 }
 
 [tabindex="-1"]:focus {
@@ -5410,6 +5411,17 @@ button.close {
   outline: 0;
 }
 
+#modalOpenProject 
+{
+    width: 700px; 
+    margin-top: -300px !important;
+    margin-left:  -350px !important; 
+} 
+
+#modalOpenProject .modal-body {
+    max-height: 525px;
+}
+
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
@@ -8872,7 +8884,7 @@ a.text-danger:hover, a.text-danger:focus {
 }
 
 .text-light {
-  color: #f8f9fa !important;
+  color: #ffffff !important;
 }
 
 a.text-light:hover, a.text-light:focus {
