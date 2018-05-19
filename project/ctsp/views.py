@@ -7,15 +7,17 @@ from .models import Projeto
 
 def index(request):
     form = ProjetoForm()
+    context_dict = {'form': form}
 
     if request.method == 'POST':
         form = ProjetoForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
+            return render(request, 'ctsp/project_welcome.html', context_dict)
+        else:
+            print(form.errors)
 
-    context_dict = {"form": form}
     return render(request, 'ctsp/index.html', context_dict)
 
 
@@ -24,4 +26,4 @@ def about(request):
 
 
 def project_welcome(request):
-    return render(request, 'ctsp/about.html')
+    return render(request, 'ctsp/project_welcome.html')

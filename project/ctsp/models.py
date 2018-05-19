@@ -12,8 +12,8 @@ class Projeto(models.Model):
     nome_max_length = nome.max_length
     sigla = models.CharField(max_length=64, null=True)
     sigla_max_length = nome.max_length
-    data_inicio = models.DateTimeField(default=timezone.now, null=True)
-    data_final = models.DateTimeField(default=timezone.now, null=True)
+    data_inicio = models.DateField(default=timezone.now, null=True)
+    data_final = models.DateField(default=timezone.now, null=True)
 
     def _str_(self):
         return self.nome

@@ -1,6 +1,10 @@
 {% extends 'ctsp/base.html' %}
 {% load staticfiles %}
+{% block title_block %} 
+Welcome! 
+{% endblock %} 
 
-<body>
-
-</body>
+{% block body_block %}
+{{project.nome}}
+{{form.nome}}
+{% endblock %}

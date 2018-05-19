@@ -67,6 +67,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  margin-top: 65px;
 }
 
 [tabindex="-1"]:focus {
@@ -3946,7 +3947,7 @@ tbody.collapse.show {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 5px;
 }
 
 .navbar > .container,
@@ -8873,6 +8874,10 @@ a.text-danger:hover, a.text-danger:focus {
 
 .text-light {
   color: #f8f9fa !important;
+}
+
+.text-dark{
+  color: #000000 !important;
 }
 
 a.text-light:hover, a.text-light:focus {
