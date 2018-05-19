@@ -5,6 +5,9 @@ Welcome!
 {% endblock %} 
 
 {% block body_block %}
-{{project.nome}}
-{{form.nome}}
+{% for field in project %}
+<p>
+    Scrum project named "{{field.project_name | title}}" successfully created!
+</p>
+{%endfor%}
 {% endblock %}

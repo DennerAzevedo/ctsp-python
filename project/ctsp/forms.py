@@ -1,29 +1,29 @@
 from django import forms
-from .models import Projeto
+from .models import Project
 
 
-class ProjetoForm(forms.ModelForm):
-    nome = forms.CharField(widget=forms.TextInput(
+class ProjectForm(forms.ModelForm):
+    project_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
         }
-    ), label='Nome do Projeto', max_length=Projeto.nome_max_length)
-    sigla = forms.CharField(widget=forms.TextInput(
+    ), label='project_name do Project', max_length=Project.project_name_max_length)
+    project_init = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
         }
-    ), label='Sigla', max_length=Projeto.sigla_max_length)
-    data_inicio = forms.DateField(widget=forms.DateInput(
+    ), label='Sigla', max_length=Project.project_init_max_length)
+    proiect_start_date = forms.DateField(widget=forms.DateInput(
         attrs={
             'class':'control-label m-3', 'id':'from_forms', 'placeholder':"MM/DD/YYY",
         }
-    ), label='Data de início')
-    data_final = forms.DateField(widget=forms.DateInput(
+    ), label='Start date')
+    project_final_date = forms.DateField(widget=forms.DateInput(
         attrs={
             'class':'control-label m-3', 'id':'from_forms', 'placeholder':"MM/DD/YYY",
         }
-    ), label='Data final')
+    ), label='Final date')
 
     class Meta:
-        model = Projeto
-        fields = ('nome', 'sigla', 'data_inicio', 'data_final',)
+        model = Project
+        fields = ('project_name', 'project_init', 'proiect_start_date', 'project_final_date',)

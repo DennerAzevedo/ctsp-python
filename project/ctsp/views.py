@@ -1,23 +1,24 @@
-from django.shortcuts import render
-from .forms import ProjetoForm
-from .models import Projeto
+from django.shortcuts import render, HttpResponseRedirect, reverse
+from .forms import ProjectForm
+from .models import Project
 
 # Create your views here.
 
 
 def index(request):
-    form = ProjetoForm()
+    form = ProjectForm()
     context_dict = {'form': form}
 
     if request.method == 'POST':
-        form = ProjetoForm(request.POST)
-
+        form = ProjectForm(request.POST)
         if form.is_valid():
-            form.save(commit=True)
+            project = form.save(commit=True)
+            context_dict['project'] = Project.objects.filter(pk=project.pk)
+            print(project.pk)
             return render(request, 'ctsp/project_welcome.html', context_dict)
-        else:
-            print(form.errors)
-
+            # return HttpResponseRedirect(reverse('ctsp:project_welcome', args=(project.pk,)))
+    else:
+        print(form.errors)
     return render(request, 'ctsp/index.html', context_dict)
 
 

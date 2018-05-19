@@ -1,5 +1,4 @@
-{% extends 'ctsp/base.html' %} {% load staticfiles %} 
-{% block body_block %}
+{% extends 'ctsp/base.html' %} {% load staticfiles %} {% block body_block %}
 <!--Botoes no centro da tela-->
 <div class="container size">
     <div class="row vertical-align justify-content-center">
@@ -22,15 +21,16 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Form code begins -->
-            <form action="{% url 'ctsp:index' %}" id="create_form" method="post">
+            <form action="{% url 'ctsp:index' %} " id="create_form" method="post">
+                {% csrf_token %}
                 <div class="modal-body">
-                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
                     <ul>
-                        {% for fields in form %}
+                        {% for field in form.visible_fields %}
                         <li>
-                            {{ fields.label }}
+                            {{ field.label }}
                             <p align='left'>
-                                {{ fields }}
+                                {{ field }}
                             </p>
                         </li>
                         {%endfor%}
@@ -102,5 +102,4 @@
         };
         date_input.datepicker(options);
     })
-</script>
-{% endblock %}
+</script> {% endblock %}
