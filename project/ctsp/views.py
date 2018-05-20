@@ -1,43 +1,51 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.generic import TemplateView, View
+
 from .forms import ProjectForm, QueryProjectForm
 from .models import Project
+
 
 # Create your views here.
 
 
-def index(request):
-    form = ProjectForm()
-    query = QueryProjectForm()
-    context_dict = {'form': form, 'query': query}
+class IndexView(TemplateView):
+    template_name = 'ctsp/index.html'
 
-    return render(request, 'ctsp/index.html', context=context_dict)
+    def get_context_data(self, **kwargs):
+        form = ProjectForm()
+        query = QueryProjectForm()
+        context = super().get_context_data(**kwargs)
+        context = {'form': form, 'query': query}
+        return context
 
 
-def create_project_modal(request):
-    form = ProjectForm()
-    context_dict = {'form': form}
+class ProjectWelcomeView(View):
+    form_class = ProjectForm
+    context = {}
+    template_name = 'ctsp/index.html'
 
-    if request.method == 'POST':
-        form = ProjectForm(request.POST)
+    def post(self, request):
+        form = self.form_class(request.POST)
 
         if form.is_valid():
             project = form.save(commit=True)
-            context_dict['project'] = Project.objects.filter(pk=project.pk)
-            return render(request, 'ctsp/welcome.html', context=context_dict)
-    return render(request, 'ctsp/index.html', context_dict)
-
-def query_project_modal(request):
-    query = QueryProjectForm()
-    context_dict = {'query': query}
-    if request.method == 'POST':
-        query = QueryProjectForm(request.POST)
-        print(query)
-
-    return render(request, 'ctsp/index.html', context_dict)
-
-def about(request):
-    return render(request, 'ctsp/about.html')
+            self.context['project'] = Project.objects.filter(pk=project.pk)
+            return render(request, 'ctsp/welcome.html', context=self.context)
+        else:
+            print(form.errors)
+        return render(request, self.template_name, {'form': form})
 
 
-def project_welcome(request):
-    return render(request, 'ctsp/welcome.html')
+class QueryView(View):
+    def get(self, request):
+        search = request.GET.get('project_name')
+        data = {
+            'is_taken': Project.objects.filter(project_name__exact=search).exists()
+        }
+        print(data)
+        return JsonResponse(data)
+
+
+class AboutView(TemplateView):
+    template_name = 'ctsp/about.html'
