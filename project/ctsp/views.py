@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 
@@ -11,6 +11,25 @@ from .models import Project
 
 class IndexView(TemplateView):
     template_name = 'ctsp/index.html'
+
+    def post(self, request, *args, **kwargs):
+        if self.request.is_ajax():
+            def ajax_query(request, *args, **kwargs):
+                search = request.POST.get('search')
+                project_name = Project.objects.filter(project_name__icontains=search)
+                project_init = Project.objects.filter(project_init__icontains=search)
+                project = max([project_init, project_name], key=len)
+                context = []
+                for i in range(0, len(project)):
+                    context.append({
+                        'project_name': project[i].project_name,
+                        'project_init': project[i].project_init,
+                        'project_start': project[i].project_start_date,
+                        'project_end': project[i].project_final_date,
+                    })
+                return JsonResponse(context, safe=False)
+
+            return ajax_query(self.request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         form = ProjectForm()
@@ -38,13 +57,10 @@ class ProjectWelcomeView(View):
 
 
 class QueryView(View):
-    def get(self, request):
-        search = request.GET.get('project_name')
-        data = {
-            'is_taken': Project.objects.filter(project_name__exact=search).exists()
-        }
-        print(data)
-        return JsonResponse(data)
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class AboutView(TemplateView):

@@ -49,7 +49,7 @@
 
 <!--Formulario abrir projeto-->
 <div id="modalOpenProject" class="modal fade">
-    <div class="modal-dialog modal-lg">
+    <div id="modal-show" class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Open Project</h4>
@@ -70,35 +70,16 @@
                                 {{ field }}
                             </p>
                         </li>
-                        <li>
-                            <p> Projects found:</p>
-                            <table id="project_table" class="query-table td th">
-                                <tr class="tr">
-                                    <th>Name</th>
-                                    <th>Init</th>
-                                    <th>Start Date</th>
-                                    <th>Final Date</th>
-                                </tr>
-                                <tr class="tr">
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                </tr>
-                                <tr class="tr">
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                </tr>
-                                <tr class="tr">
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                    <td>example</td>
-                                </tr>
-                            </table>
-                        </li>
+                        <table id="project_table" class="query-table td th">
+                            <!--<tr id="fix" class="tr">-->
+                            <!--<th>Name</th>-->
+                            <!--<th>Initials</th>-->
+                            <!--<th>Start Date</th>-->
+                            <!--<th>Final Date</th>-->
+                            <!--</tr>-->
+                            <tbody id="table_body">
+                            </tbody>
+                        </table>
                         {%endfor%}
                     </ul>
                 </div>
@@ -127,17 +108,38 @@
 </script>
 <script>
     $("#project_name_or_ID").change(function () {
-        var search = $(this).val()
-
+        var search = $(this).val();
         $.ajax({
-            url: 'ajax/get_search/',
+            type: 'post',
             data: {
-                'search': search
+                'search': search,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
             },
             dataType: 'json',
             success: function (data) {
-                if (data) {
-                    console.log(data.get)
+                $("tr").remove();
+                $("caption").remove()
+                if (data.length) {
+                    $("table")
+                        .append("<caption>" + 'Total of ' + data.length + ' projects found' + "</caption>")
+                        .append("<tr class='tr'>" +
+                            "<th>Name</th>" +
+                            "<th>Initials</th>" +
+                            "<th>Start Date</th>" +
+                            "<th>End Date</th>" +
+                            "</tr>");
+                } else {
+                    $("table").append("<caption class='text-danger'>No projects were found for your search<caption>");
+                }
+                for (let i = 0; i < data.length; i++) {
+                    $("#table_body")
+                        .after('<tr>' +
+                            '<th id="non-fix-h">' + data[i]["project_name"] + '</th>' +
+                            '<th id="non-fix-h">' + data[i]["project_init"] + '</th>' +
+                            '<th id="non-fix-h">' + data[i]["project_start"] + '</th>' +
+                            '<th id="non-fix-h">' + data[i]["project_end"] + '</th>' +
+                            '</tr>'
+                        );
                 }
             }
         });
