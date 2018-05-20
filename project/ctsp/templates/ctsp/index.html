@@ -58,7 +58,7 @@
                 </button>
             </div>
             <!-- Form code begins -->
-            <form action="{% url 'ctsp:index' %}" id="open_form" method="post">
+            <form id="open_form" method="post">
                 {% csrf_token %}
                 <div class="modal-body">
                     {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %}
@@ -70,22 +70,15 @@
                                 {{ field }}
                             </p>
                         </li>
-                        <table id="project_table" class="query-table td th">
-                            <!--<tr id="fix" class="tr">-->
-                            <!--<th>Name</th>-->
-                            <!--<th>Initials</th>-->
-                            <!--<th>Start Date</th>-->
-                            <!--<th>Final Date</th>-->
-                            <!--</tr>-->
-                            <tbody id="table_body">
-                            </tbody>
-                        </table>
                         {%endfor%}
                     </ul>
+                    <table id="project_table" class="query-table td th">
+                        <tbody id="table_body">
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
-                    <button id="go-query" type="submit" class="btn btn-primary" name="submit" form="open_form">Search
-                    </button>
+                    <button class="btn btn-primary" type="button">Search</button>
                 </div>
             </form>
         </div>
