@@ -108,13 +108,17 @@
     </div>
 </div>
 
-{% block script_block %} $(document).ready(function () { //var date_input = $('input[name="date"]'); //our date input has
-the name "date" var date_input = $('input[id=from_forms]'); //var container = $('.bootstrap form').length > 0 ? $('.bootstrap
-form').parent() : "body"; var options = { format: 'mm/dd/yyyy', //container: container, todayHighlight: true, autoclose:
-true, }; date_input.datepicker(options); }) {% endblock %}
-<script type="text/javascript">
-    $('#go-query').click(function () {
-        var str = $('#query-content').text();
-        alert(str)
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[id="from_forms"]'); //our date input has the name "date"
+        var container = $('.bootstrap form').length > 0 ? $('.bootstrap form').parent() : "body";
+        var options = {
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
     })
-</script> {% endblock %}
+</script>
+{% endblock %}
