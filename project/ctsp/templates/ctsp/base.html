@@ -16,7 +16,7 @@
             padding: 8px;
         }
 
-        .tr:nth-child(even) {
+        .tr:nth-child(odd) {
             background-color: #dddddd;
         }
     </style>
@@ -24,10 +24,13 @@
     <link rel="stylesheet" href="{% static 'ctsp/css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'ctsp/js/bootstrap.js' %}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block head_block %} {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head_block %} {% endblock %}
     <title>
         {% block title_block %} Cloud Tool for Scrum Practitioners {% endblock %}
     </title>
@@ -37,8 +40,9 @@
     <a class="navbar-brand" href="{% url 'ctsp:index' %}">
         <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> CTSP
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -62,7 +66,7 @@
 <!-- page specific content -->
 
 <body>
-    {% block body_block %} {% endblock %}
+{% block body_block %} {% endblock %}
 </body>
 
 
@@ -71,10 +75,5 @@
     <a class="text-light" href="{% url 'ctsp:index' %}">Home</a>
     {% block footer_block %} {% endblock %}
 </footer>
-
-<script>
-    {% block script_block %}
-    {% endblock %}
-</script>
 
 </html>
