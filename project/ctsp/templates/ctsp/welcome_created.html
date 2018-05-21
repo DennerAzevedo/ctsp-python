@@ -15,16 +15,16 @@ Welcome!
 </p>
 <ol>
     <li>
-        <a href="">Create team members</a>
+        <a href="{% url 'ctsp:create_members' field.pk %}">Create team members</a>
     </li>
     <li>
-        <a href="">Assign team members to Scrum roles</a>
+        <a href="{% url 'ctsp:assign_members' field.pk %}">Assign team members to Scrum roles</a>
     </li>
     <li>
-        <a href="">Create product backlog for the project</a>
+        <a href="{% url 'ctsp:create_pbacklog' field.pk %}">Create product backlog for the project</a>
     </li>
     <li>
-        <a href="">Create a Sprint</a>
+        <a href="{% url 'ctsp:create_sprint' field.pk %}">Create a Sprint</a>
     </li>
 </ol>
 {%endfor%} {% endblock %}

@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, RedirectView
-from django.views.generic.base import ContextMixin, View
+from django.views.generic.base import View
 
 from .forms import ProjectForm, QueryProjectForm
 from .models import Project
@@ -44,6 +44,21 @@ class IndexView(View):
         context = {'form': form, 'query': query}
         return render(request, self.template_name, context)
 
+
+class CreateMembersView(TemplateView):
+    template_name = "ctsp/create_members.html"
+
+
+class CreatePbacklogView(TemplateView):
+    template_name = "ctsp/create_pbacklog.html"
+
+
+class CreateSprintView(TemplateView):
+    template_name = "ctsp/create_sprint.html"
+
+
+class AssignMembersView(TemplateView):
+    template_name = "ctsp/assign_members.html"
 
 class CreateProjectView(RedirectView):
     def post(self, request, *args, **kwargs):
