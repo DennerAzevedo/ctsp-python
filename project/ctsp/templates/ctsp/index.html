@@ -21,7 +21,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Form code begins -->
-            <form action="{% url 'ctsp:project_welcome' %}" id="create_form" method="post">
+            <form action="{% url 'ctsp:create_project' %}" id="create_form" method="post">
                 {% csrf_token %}
                 <div class="modal-body">
                     {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
@@ -78,7 +78,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button">Search</button>
+                    <button id="query-go" class="btn btn-primary" type="button">Search</button>
                 </div>
             </form>
         </div>
@@ -100,8 +100,8 @@
     })
 </script>
 <script>
-    $("#project_name_or_ID").change(function () {
-        var search = $(this).val();
+    $("#query-go").on("click", function () {
+        var search = $(project_name_or_ID).val();
         $.ajax({
             type: 'post',
             data: {
@@ -111,13 +111,13 @@
             dataType: 'json',
             success: function (data) {
                 $("tr").remove();
-                $("caption").remove()
+                $("caption").remove();
                 if (data.length) {
                     $("table")
                         .append("<caption>" + 'Total of ' + data.length + ' projects found' + "</caption>")
                         .append("<tr class='tr'>" +
+                            "<th>ID</th>" +
                             "<th>Name</th>" +
-                            "<th>Initials</th>" +
                             "<th>Start Date</th>" +
                             "<th>End Date</th>" +
                             "</tr>");
@@ -127,8 +127,8 @@
                 for (let i = 0; i < data.length; i++) {
                     $("#table_body")
                         .after('<tr>' +
+                            '<th id="non-fix-h">' + data[i]["project_pk"] + '</th>' +
                             '<th id="non-fix-h">' + data[i]["project_name"] + '</th>' +
-                            '<th id="non-fix-h">' + data[i]["project_init"] + '</th>' +
                             '<th id="non-fix-h">' + data[i]["project_start"] + '</th>' +
                             '<th id="non-fix-h">' + data[i]["project_end"] + '</th>' +
                             '</tr>'
