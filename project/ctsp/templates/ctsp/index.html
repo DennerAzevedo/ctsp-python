@@ -1,4 +1,6 @@
-{% extends 'ctsp/base.html' %} {% load staticfiles %} {% block body_block %}
+{% extends 'ctsp/base.html' %}
+{% load staticfiles %}
+{% block body_block %}
 <!--Botoes no centro da tela-->
 <div class="container size">
     <div class="row vertical-align justify-content-center">
@@ -58,7 +60,7 @@
                 </button>
             </div>
             <!-- Form code begins -->
-            <form id="open_form" method="post">
+            <form id="open_form">
                 {% csrf_token %}
                 <div class="modal-body">
                     {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %}
@@ -85,6 +87,14 @@
     </div>
 </div>
 
+<script>
+    $("#project_name_or_ID").keypress("click", function (event) {
+        if (event.key !== "Enter")
+            return;
+        $("#query-go").click();
+        event.preventDefault();
+    });
+</script>
 
 <script>
     $(document).ready(function () {
