@@ -8,11 +8,6 @@ class ProjectForm(forms.ModelForm):
             'class': 'form-control',
         }
     ), label='Project Name', max_length=Project.project_name_max_length)
-    project_init = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control',
-        }
-    ), label='Scrum Project ID', max_length=Project.project_init_max_length)
     proiect_start_date = forms.DateField(widget=forms.DateInput(
         attrs={
             'class': 'control-label m-3', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
@@ -26,7 +21,7 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ('project_name', 'project_init', 'proiect_start_date', 'project_final_date',)
+        fields = ('project_name', 'proiect_start_date', 'project_final_date',)
 
 
 class QueryProjectForm(forms.ModelForm):

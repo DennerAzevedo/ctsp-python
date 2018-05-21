@@ -1,6 +1,7 @@
 from django.http import JsonResponse
-from django.shortcuts import render
-from django.views.generic import TemplateView, View, UpdateView
+from django.shortcuts import redirect, render
+from django.views.generic import TemplateView, RedirectView
+from django.views.generic.base import ContextMixin, View
 
 from .forms import ProjectForm, QueryProjectForm
 from .models import Project
@@ -8,52 +9,57 @@ from .models import Project
 
 # Create your views here.
 
-class IndexView(TemplateView):
+class IndexView(View):
     template_name = 'ctsp/index.html'
 
     def post(self, request, *args, **kwargs):
         if self.request.is_ajax():
             search = request.POST.get('search')
-            project_name = Project.objects.filter(project_name__icontains=search)
-            project_init = Project.objects.filter(project_init__icontains=search)
-            project = max([project_init, project_name], key=len)
+            print(search)
+
+            def is_number(s):
+                try:
+                    float(s)
+                    return True
+                except ValueError:
+                    return False
+
+            if is_number(search) == True:
+                project = Project.objects.filter(id=search)
+            else:
+                project = Project.objects.filter(project_name__icontains=search)
             context = []
             for i in range(0, len(project)):
                 context.append({
+                    'project_pk': project[i].id,
                     'project_name': project[i].project_name,
-                    'project_init': project[i].project_init,
                     'project_start': project[i].project_start_date,
                     'project_end': project[i].project_final_date,
                 })
         return JsonResponse(context, safe=False)
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args):
         form = ProjectForm()
         query = QueryProjectForm()
-        context = super().get_context_data(**kwargs)
         context = {'form': form, 'query': query}
-        return context
+        return render(request, self.template_name, context)
 
 
-class ProjectWelcomeView(View):
-    form_class = ProjectForm
-    context = {}
-    template_name = 'ctsp/index.html'
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
+class CreateProjectView(RedirectView):
+    def post(self, request, *args, **kwargs):
+        form = ProjectForm(request.POST)
         if form.is_valid():
             project = form.save(commit=True)
-            self.context['project'] = Project.objects.filter(pk=project.pk)
-            return render(request, 'ctsp/welcome.html', context=self.context)
-        else:
-            print(form.errors)
-        return render(request, self.template_name, {'form': form})
+            return redirect('ctsp:project_welcome', pk=project.pk, permanent=False)
 
 
-class QueryUpdate(UpdateView):
-    model = Project
+class WelcomeProjectView(TemplateView):
+    template_name = 'ctsp/welcome_created.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WelcomeProjectView, self).get_context_data(**kwargs)
+        context['project'] = Project.objects.filter(pk=context['pk'])
+        return context
 
 
 class AboutView(TemplateView):
