@@ -16,7 +16,7 @@
 
 <!--Formulario criar projeto-->
 <div id="modalCreateProject" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Create Project</h4>
@@ -50,8 +50,8 @@
 </div>
 
 <!--Formulario abrir projeto-->
-<div id="modalOpenProject" class="modal fade">
-    <div id="modal-show" class="modal-dialog modal-lg">
+<div id="modalOpenProject" class="modal fade" role="dialog">
+    <div id="modal-show" class="modal modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Open Project</h4>
@@ -98,9 +98,10 @@
 
 <script>
     $(document).ready(function () {
-        var date_input = $('input[id="from_forms"]'); //our date input has the name "date"
-        var container = $('.bootstrap form').length > 0 ? $('.bootstrap form').parent() : "body";
-        var options = {
+        let date_input = $('input[id="from_forms"]');
+        let ex = $(".bootstrap form");
+        let container = ex.length > 0 ? ex.parent() : "body";
+        let options = {
             format: 'mm/dd/yyyy',
             container: container,
             todayHighlight: true,
@@ -111,7 +112,7 @@
 </script>
 <script>
     $("#query-go").on("click", function () {
-        var search = $(project_name_or_ID).val();
+        let search = $(project_name_or_ID).val();
         $.ajax({
             type: 'post',
             data: {
@@ -147,7 +148,6 @@
             }
         });
     });
-    document.write("lul")
 </script>
 
 
