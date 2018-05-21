@@ -15,7 +15,6 @@ class IndexView(View):
     def post(self, request, *args, **kwargs):
         if self.request.is_ajax():
             search = request.POST.get('search')
-            print(search)
 
             def is_number(s):
                 try:
