@@ -5406,9 +5406,14 @@ button.close {
   bottom: 0;
   left: 0;
   z-index: 1050;
+    margin: auto;
   display: none;
   overflow: hidden;
   outline: 0;
+}
+
+.modal > modal-content {
+    display: table-cell;
 }
 
 
