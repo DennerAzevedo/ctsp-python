@@ -10,12 +10,12 @@ class ProjectForm(forms.ModelForm):
     ), label='Project Name', max_length=Project.project_name_max_length)
     proiect_start_date = forms.DateField(widget=forms.DateInput(
         attrs={
-            'class': 'control-label m-3', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
+            'class': 'form-control control-label', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
         }
     ), label='Start date')
     project_final_date = forms.DateField(widget=forms.DateInput(
         attrs={
-            'class': 'control-label m-3', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
+            'class': 'form-control control-label', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
         }
     ), label='Final date')
 
