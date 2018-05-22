@@ -35,44 +35,41 @@
     </title>
 </head>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="{% url 'ctsp:index' %}">
-        <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> CTSP
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" id='tabs'>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'ctsp:index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'ctsp:about' %}">About</a>
-            </li>
-        </ul>
-    </div>
-    <script>
-        $(document).ready(function () {
-            $('li.active').removeClass('active');
-            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
-        });
-    </script>
-</nav>
-
-<!-- page specific content -->
-
 <body>
-{% block body_block %} {% endblock %}
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="{% url 'ctsp:index' %}">
+            <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> CTSP
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" id='tabs'>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'ctsp:index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ctsp:about' %}">About</a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('li.active').removeClass('active');
+                $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            });
+        </script>
+    </nav>
+
+    <!-- page specific content -->
+    {% block body_block %} {% endblock %}
+
+    <footer class="card-footer text-center bg-primary fixed-bottom">
+        <a class="text-light" href="{% url 'ctsp:about' %}">About</a>
+        <a class="text-light" href="{% url 'ctsp:index' %}">Home</a>
+        {% block footer_block %} {% endblock %}
+    </footer>
 </body>
-
-
-<footer class="card-footer text-center bg-primary fixed-bottom">
-    <a class="text-light" href="{% url 'ctsp:about' %}">About</a>
-    <a class="text-light" href="{% url 'ctsp:index' %}">Home</a>
-    {% block footer_block %} {% endblock %}
-</footer>
-
 </html>

@@ -1,11 +1,10 @@
 .size {
-    height: 100vh;
+    height: 80vh;
 }
 
 .vertical-align {
     position: relative;
-    top: 50vh;
-    transform: translateY(-50%);
+    top: 40vh;
 }
 
 .cor-texto{
