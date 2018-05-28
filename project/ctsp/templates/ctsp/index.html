@@ -24,12 +24,22 @@
             <form action="{% url 'ctsp:create_project' %}" id="create_form" method="post">
                 {% csrf_token %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
                 <div class="modal-body">
+<<<<<<< HEAD
                     {% for field in form.visible_fields %}
                     <div style="padding-bottom: 2vh">
                         <label>{{ field.label }}</label>
                         {{ field }}
                     </div>
                     {%endfor%}
+=======
+                    {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
+                        {% for field in form.visible_fields %}
+                            <div style="padding-bottom: 2vh">
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {%endfor%}
+>>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" name="submit" form="create_form" data-dismiss="modal-body">Create
@@ -55,12 +65,22 @@
             <form id="open_form">
                 {% csrf_token %}
                 <div class="modal-body">
+<<<<<<< HEAD
                     {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %} {% for field in query.visible_fields %}
                     <div style="padding-bottom: 2vh">
                         <label>{{ field.label }}</label>
                         {{ field }}
                     </div>
                     {%endfor%}
+=======
+                    {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %}
+                        {% for field in query.visible_fields %}
+                        <div style="padding-bottom: 2vh">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {%endfor%}
+>>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
                     <table id="project_table" class="query-table td th">
                         <tbody id="table_body">
                         </tbody>
