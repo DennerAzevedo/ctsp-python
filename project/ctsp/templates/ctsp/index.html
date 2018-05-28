@@ -1,6 +1,4 @@
-{% extends 'ctsp/base.html' %}
-{% load staticfiles %}
-{% block body_block %}
+{% extends 'ctsp/base.html' %} {% load staticfiles %} {% block body_block %} {% block head_block %} {% endblock %}
 <!--Botoes no centro da tela-->
 <div class="container size">
     <div class="row vertical-align justify-content-center">
@@ -24,8 +22,16 @@
             </div>
             <!-- Form code begins -->
             <form action="{% url 'ctsp:create_project' %}" id="create_form" method="post">
-                {% csrf_token %}
+                {% csrf_token %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
                 <div class="modal-body">
+<<<<<<< HEAD
+                    {% for field in form.visible_fields %}
+                    <div style="padding-bottom: 2vh">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {%endfor%}
+=======
                     {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
                         {% for field in form.visible_fields %}
                             <div style="padding-bottom: 2vh">
@@ -33,10 +39,10 @@
                                 {{ field }}
                             </div>
                         {%endfor%}
+>>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" form="create_form"
-                            data-dismiss="modal-body">Create
+                    <button type="submit" class="btn btn-primary" name="submit" form="create_form" data-dismiss="modal-body">Create
                     </button>
                 </div>
             </form>
@@ -59,6 +65,14 @@
             <form id="open_form">
                 {% csrf_token %}
                 <div class="modal-body">
+<<<<<<< HEAD
+                    {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %} {% for field in query.visible_fields %}
+                    <div style="padding-bottom: 2vh">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {%endfor%}
+=======
                     {% for hidden in query.hidden_fields %} {{ hidden }} {% endfor %}
                         {% for field in query.visible_fields %}
                         <div style="padding-bottom: 2vh">
@@ -66,6 +80,7 @@
                             {{ field }}
                         </div>
                         {%endfor%}
+>>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
                     <table id="project_table" class="query-table td th">
                         <tbody id="table_body">
                         </tbody>
@@ -79,6 +94,24 @@
     </div>
 </div>
 
+<!-- Scripts -->
+<script>
+    function preventDate() {
+        let start_date = $("#start_date").val();
+        let final_date = $("#final_date").val();
+        if (final_date < start_date) {
+            return false;
+        }
+        return true;
+    }
+    // $(document).ready(function () { 
+    //     $("#final_date").change(function (e) {
+    //         let start_date = $("#start_date").val();
+    //         let final_date = $(this).val()
+    //         preventDate(start_date, final_date);
+    //     });
+    // });
+</script>
 <script>
     $("#project_name_or_ID").keypress("click", function (event) {
         if (event.key !== "Enter")
@@ -87,20 +120,22 @@
         event.preventDefault();
     });
 </script>
-
 <script>
     $(document).ready(function () {
-        let date_input = $('input[id="from_forms"]');
-        let ex = $(".bootstrap form");
+        let date_input = [$('input[id$="_date"]')];
+        let ex = $(".bootstrap-iso form");
         let container = ex.length > 0 ? ex.parent() : "body";
         let options = {
             format: 'mm/dd/yyyy',
             container: container,
             todayHighlight: true,
+            orientation: "auto right",
             autoclose: true,
         };
-        date_input.datepicker(options);
-    })
+        date_input.forEach(function (e) {
+            e.datepicker(options);
+        })
+    });
 </script>
 <script>
     $("#query-go").on("click", function () {
@@ -140,7 +175,4 @@
             }
         });
     });
-</script>
-
-
-{% endblock %}
+</script> {% endblock %}
