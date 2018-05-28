@@ -59,7 +59,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 }
 
 body {
-  margin: 0;
+  margin: 50px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: 400;
@@ -67,7 +67,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
-  padding-left: 60px;
+  margin-top: 65px;
 }
 
 [tabindex="-1"]:focus {
@@ -3947,7 +3947,7 @@ tbody.collapse.show {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 5px;
 }
 
 .navbar > .container,
@@ -5411,16 +5411,10 @@ button.close {
   outline: 0;
 }
 
-#modalOpenProject 
-{
-    width: 700px; 
-    margin-top: -300px !important;
-    margin-left:  -350px !important; 
-} 
-
-#modalOpenProject .modal-body {
-    max-height: 525px;
+.modal > modal-content {
+    display: table-cell;
 }
+
 
 .modal-open .modal {
   overflow-x: hidden;
@@ -5572,7 +5566,7 @@ button.close {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 800px;
+    max-width: 75%;
   }
 }
 
@@ -8885,6 +8879,10 @@ a.text-danger:hover, a.text-danger:focus {
 
 .text-light {
   color: #ffffff !important;
+}
+
+.text-dark{
+  color: #000000 !important;
 }
 
 a.text-light:hover, a.text-light:focus {
