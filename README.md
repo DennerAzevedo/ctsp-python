@@ -5,15 +5,31 @@ CTSP is a open source software to help you manage your team software development
 ## Getting Started
 ### Prerequisites
 
-The project is mainly made to run on Linux. The dependencies for this project are the following packages:
+The project is mainly made to run on Linux. The system dependencies for this project are the following packages:
 
 * python3
 * python3-dev
 * mysql-client
 * mysql-server
 * libmysqlclient-dev
-* python3-venv
+* python3-venv (python dependencies will be treated later)
 
+After installing those dependencies, clone the project and cd into this folder with the following command:
+```
+cd ctsp-python
+```
+Then create a virtual environment with the following command:
+```
+python3 -m venv ./venv
+```
+Now activate your virtual environment with the following command:
+```
+source venv/bin/activate
+```
+Now install the python3 dependencies running the following command:
+```
+pip install -U django mysqlclient
+```
 ### Having the server up
 
 First of all, clone the GitHub project into a local machine running:
