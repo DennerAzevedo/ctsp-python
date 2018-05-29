@@ -22,5 +22,5 @@ cd ctsp-python/build/
 ```
 3. Run the automated build script
 ```
-./configure
+./configure.sh
 ```
