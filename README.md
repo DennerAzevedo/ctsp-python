@@ -18,6 +18,10 @@ You can run the **system_dependencies.sh** script inside the project folder to i
 
 After installing those dependencies, clone the project and cd into this folder with the following command:
 ```
+git clone https://github.com/CTSP-Software/ctsp-python
+```
+And go into the directory you cloned using:
+```
 cd ctsp-python
 ```
 Then create a virtual environment with the following command:
