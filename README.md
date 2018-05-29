@@ -3,6 +3,17 @@
 CTSP is a open source software to help you manage your team software development based on Scrum principles of agile development. Different from other softwares available on the market, CTSP comes configurates out of the box.
 
 ## Getting Started
+### Prerequisites
+
+The project is mainly made to run on Linux. The dependencies for this project are the following packages:
+
+* python3
+* python3-dev
+* mysql-client
+* mysql-server
+* libmysqlclient-dev
+* python3-venv
+
 ### Having the server up
 
 First of all, clone the GitHub project into a local machine running:
