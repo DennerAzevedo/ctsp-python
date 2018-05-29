@@ -28,8 +28,8 @@ source ../venv/bin/activate
 
 # installing needed packages
 pip install -U wheel 
+pip install -U pytz
 pip install -U pylint 
-pip install -U pillow 
 pip install -U autopep8 
 pip install -U django 
 pip install -U mysqlclient
