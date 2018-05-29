@@ -3,7 +3,7 @@
 CTSP is a open source software to help you manage your team software development based on Scrum principles of agile development. Different from other softwares available on the market, CTSP comes configurates out of the box.
 
 ## Getting Started
-### Prerequisites
+### Prerequisites (dependencies)
 
 The project is mainly made to run on Linux. The system dependencies for this project are the following packages:
 
@@ -13,6 +13,8 @@ The project is mainly made to run on Linux. The system dependencies for this pro
 * mysql-server
 * libmysqlclient-dev
 * python3-venv (python dependencies will be treated later)
+
+You can run the **system_dependencies.sh** script inside the project folder to install it automatically for you.
 
 After installing those dependencies, clone the project and cd into this folder with the following command:
 ```
@@ -30,26 +32,18 @@ Now install the python3 dependencies running the following command:
 ```
 pip install -U django mysqlclient
 ```
+Now you have your setup to build the project. Continue from this part.
+
 ### Having the server up
 
-First of all, clone the GitHub project into a local machine running:
-
-```
-git clone https://github.com/CTSP-Software/ctsp-python
-```
-
-Then you should run the commands:
-
+Inside the ctsp-python directory, run the following command to enter the project directory:
 ```
 cd ctsp-python/project/
 ```
-
-Inside the directory you're right now you should find a manage.py script. Now run this script with python3 and pass the runserver argument.:
-
+Inside the directory you're right now you should find a manage.py script. Now run this script with python3 and pass the runserver argument with the following command (your python virtual environment should be activated):
 ```
 python3 manage.py runserver
 ```
-
 Now you have a local server running on port 8000, you can then run CTSP locally writing on http://localhost:8000/ctsp
 
 ### Having the functionalities
