@@ -18,15 +18,13 @@ class IndexView(View):
             search = request.POST.get('search')
 
             try:
-                project = Project.objects.filter(id=float(search))
+                project = Project.objects.filter(
+                    Q(project_name__icontains=search) |
+                    Q(id__icontains=search)
+                )
             except ValueError:
                 project = Project.objects.filter(
                     project_name__icontains=search)
-            else:
-                project = Project.objects.filter(
-                    Q(project_name__icontains=search) |
-                    Q(id__icontains=float(search))
-                )
 
             context = []
             for i in range(0, len(project)):
