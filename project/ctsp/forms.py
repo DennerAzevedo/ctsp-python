@@ -12,21 +12,13 @@ class ProjectForm(forms.ModelForm, forms.Form):
     ), label='Project Name', max_length=Project.project_name_max_length)
     project_start_date = forms.DateField(widget=forms.DateInput(
         attrs={
-<<<<<<< HEAD
             'class': 'form-control control-label', 'id': 'start_date', 'placeholder': "MM/DD/YYY",
             'autocomplete': 'off',
-=======
-            'class': 'form-control control-label', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
->>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
         }
     ), label='Start date')
     project_final_date = forms.DateField(widget=forms.DateInput(
         attrs={
-<<<<<<< HEAD
             'class': 'form-control control-label', 'id': 'final_date', 'placeholder': "MM/DD/YYY", 'autocomplete': 'off',
-=======
-            'class': 'form-control control-label', 'id': 'from_forms', 'placeholder': "MM/DD/YYY",
->>>>>>> c127cabf50db4614edbacd89a0a1a600fb6a822f
         }
     ), label='Final date')
 
@@ -47,6 +39,7 @@ class ProjectForm(forms.ModelForm, forms.Form):
             if final_date < start_date:
                 raise forms.ValidationError("string error")
             return cleaned_data
+
 
 class QueryProjectForm(forms.ModelForm):
     project_name_or_ID = forms.CharField(widget=forms.TextInput(
