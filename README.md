@@ -14,7 +14,7 @@ To build the project, follow the steps bellow:
 
 1. Clone the project into a desired directory running:
 ```
-git clone https://github.com/CTSP-Software/ctsp-python
+git clone https://github.com/CTSP-Software/ctsp-python.git
 ```
 2. Change directory into the build directory of the project:
 ```
