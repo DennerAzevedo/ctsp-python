@@ -84,13 +84,6 @@
         }
         return true;
     }
-    // $(document).ready(function () { 
-    //     $("#final_date").change(function (e) {
-    //         let start_date = $("#start_date").val();
-    //         let final_date = $(this).val()
-    //         preventDate(start_date, final_date);
-    //     });
-    // });
 </script>
 <script>
     $("#project_name_or_ID").keypress("click", function (event) {
@@ -118,12 +111,19 @@
     });
 </script>
 <script>
+    /*
+    The following function use a mix of JQuery and JQuery.Ajax to perform an asynchronous HTTP request.
+    Then the queried data is parsed into an HTML table dinamically crating rows.
+    To learn more about HTML5 and its DOM elements refer to: https://developer.mozilla.org/en-US/docs/Web/HTML
+    To learn more about JQuery refer to: http://api.jquery.com/
+    To learn more about JQuery.Ajax refer to: http://api.jquery.com/category/ajax/
+    */
     $("#query-go").on("click", function () {
-        let search = $(project_name_or_ID).val();
+        let search_text = $(project_name_or_ID).val();
         $.ajax({
             type: 'post',
             data: {
-                'search': search,
+                'search_text': search_text,
                 'csrfmiddlewaretoken': '{{ csrf_token }}',
             },
             dataType: 'json',

@@ -1,8 +1,13 @@
 from django.urls import path
-
 from . import views
-
 app_name = 'ctsp'
+
+
+'''
+This module provides all our ctsp application urls.
+Direct accesses and redirects needs to pass here.
+To learn more about the django urls refer to: https://docs.djangoproject.com/en/2.0/ref/urls/
+'''
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
