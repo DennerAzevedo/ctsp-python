@@ -1,0 +1,44 @@
+@slow
+Feature: simple nmap attack (checking ports)
+
+  Background:
+    Given "nmap" is installed
+    And the following profile:
+      | name            | value          |
+      | hostnameExternal| 192.168.15.211 |
+      | sshPort         | 22             |
+      | httpPort        | 80             |
+      | mysqlPort       | 3306           |
+
+
+  Scenario: Verify server External is available on http
+    When I launch an "nmap" attack with:
+      """
+      nmap -p <httpPort> <hostnameExternal> -Pn
+      """
+    Then the output should contain:
+      """
+      80/tcp open
+      """
+
+
+  Scenario: Verify server External is available on ssh
+    When I launch an "nmap" attack with:
+      """
+      nmap -p <sshPort> <hostnameExternal> -Pn
+      """
+    Then the output should contain:
+      """
+      22/tcp open
+      """
+
+  Scenario: Verify server External is not available on mysql
+    When I launch an "nmap" attack with:
+      """
+      nmap -p <mysqlPort> <hostnameExternal>
+      """
+    Then the output should contain:
+      """
+      3306/tcp close
+      """
+
