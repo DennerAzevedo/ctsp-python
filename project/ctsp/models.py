@@ -19,3 +19,18 @@ class Project(models.Model):
 
     def _str_(self):
         return self.project_name_max_length
+    
+   
+class MembrosDoTime(models.Model):
+    membrosDoTime_name = models.CharField(max_length=30, null=False)
+    membrosDoTime_name_max_length = membrosDoTime_name.max_length
+    membrosDoTime_sobrename = models.CharField(max_lenght=100, null=False)
+    membrosDoTime_sobrename_max_length = membrosDoTime_sobrename.max_length
+    membrosDoTime_nascimento = models.DataField(default=timezone.now, null = True)
+    membrosDoTime_telefone = models.CharField('Telefone para Contato', max_length=13,blank=True, null=True)
+    membrosDoTime_habilidades = models.CharField(max_lenght = 300, null = True)
+    membrodDoTime_login = models.CharField(max_lenght = 50, null =False)
+    membrosDoTime_senha = models.CharField(max_lenght = 100, null = False)
+    
+    def _str_(self):
+        return self.membrosDoTime_name_max_length
